@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Demo\\quickstart\\src\\IdentityServer\\IdentityServer.csproj": {}
+    "D:\\Demo\\Demo\\quickstart\\src\\IdentityServer\\IdentityServer.csproj": {}
   },
   "projects": {
-    "D:\\Demo\\quickstart\\src\\IdentityServer\\IdentityServer.csproj": {
+    "D:\\Demo\\Demo\\quickstart\\src\\IdentityServer\\IdentityServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Demo\\quickstart\\src\\IdentityServer\\IdentityServer.csproj",
+        "projectUniqueName": "D:\\Demo\\Demo\\quickstart\\src\\IdentityServer\\IdentityServer.csproj",
         "projectName": "IdentityServer",
-        "projectPath": "D:\\Demo\\quickstart\\src\\IdentityServer\\IdentityServer.csproj",
+        "projectPath": "D:\\Demo\\Demo\\quickstart\\src\\IdentityServer\\IdentityServer.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Demo\\quickstart\\src\\IdentityServer\\obj\\",
+        "outputPath": "D:\\Demo\\Demo\\quickstart\\src\\IdentityServer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

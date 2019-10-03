@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Demo\\quickstart\\src\\MvcClient\\MvcClient.csproj": {}
+    "D:\\Demo\\Demo\\quickstart\\src\\MvcClient\\MvcClient.csproj": {}
   },
   "projects": {
-    "D:\\Demo\\quickstart\\src\\MvcClient\\MvcClient.csproj": {
+    "D:\\Demo\\Demo\\quickstart\\src\\MvcClient\\MvcClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Demo\\quickstart\\src\\MvcClient\\MvcClient.csproj",
+        "projectUniqueName": "D:\\Demo\\Demo\\quickstart\\src\\MvcClient\\MvcClient.csproj",
         "projectName": "MvcClient",
-        "projectPath": "D:\\Demo\\quickstart\\src\\MvcClient\\MvcClient.csproj",
+        "projectPath": "D:\\Demo\\Demo\\quickstart\\src\\MvcClient\\MvcClient.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Demo\\quickstart\\src\\MvcClient\\obj\\",
+        "outputPath": "D:\\Demo\\Demo\\quickstart\\src\\MvcClient\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -41,9 +41,17 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "IdentityServer4.AccessTokenValidation": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
             "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",

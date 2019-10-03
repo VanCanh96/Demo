@@ -1,0 +1,9 @@
+﻿@model List<MvcClient.Models.LoginInputModel>
+
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.Username</li>
+            <li>@item.Password</li>
+        }
+    </ul>
