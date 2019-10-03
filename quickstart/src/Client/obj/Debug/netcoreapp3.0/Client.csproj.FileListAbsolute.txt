@@ -1,0 +1,14 @@
+D:\Demo\quickstart\src\Client\obj\Debug\netcoreapp3.0\Client.pdb
+D:\Demo\quickstart\src\Client\bin\Debug\netcoreapp3.0\Client.exe
+D:\Demo\quickstart\src\Client\bin\Debug\netcoreapp3.0\Client.deps.json
+D:\Demo\quickstart\src\Client\bin\Debug\netcoreapp3.0\Client.runtimeconfig.json
+D:\Demo\quickstart\src\Client\bin\Debug\netcoreapp3.0\Client.runtimeconfig.dev.json
+D:\Demo\quickstart\src\Client\bin\Debug\netcoreapp3.0\Client.dll
+D:\Demo\quickstart\src\Client\bin\Debug\netcoreapp3.0\Client.pdb
+D:\Demo\quickstart\src\Client\bin\Debug\netcoreapp3.0\IdentityModel.dll
+D:\Demo\quickstart\src\Client\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+D:\Demo\quickstart\src\Client\obj\Debug\netcoreapp3.0\Client.AssemblyInfoInputs.cache
+D:\Demo\quickstart\src\Client\obj\Debug\netcoreapp3.0\Client.AssemblyInfo.cs
+D:\Demo\quickstart\src\Client\obj\Debug\netcoreapp3.0\Client.csproj.CopyComplete
+D:\Demo\quickstart\src\Client\obj\Debug\netcoreapp3.0\Client.dll
+D:\Demo\quickstart\src\Client\obj\Debug\netcoreapp3.0\Client.csprojAssemblyReference.cache
