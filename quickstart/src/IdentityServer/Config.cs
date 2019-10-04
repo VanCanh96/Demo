@@ -59,7 +59,7 @@ namespace IdentityServer
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = { "api1" }
+                    AllowedScopes = { "api1", "api2" }
                 },
 
                 // OpenID Connect implicit flow client (MVC)
@@ -98,6 +98,12 @@ namespace IdentityServer
                 {
                     SubjectId = "2",
                     Username = "bob",
+                    Password = "password"
+                },
+                new TestUser
+                {
+                    SubjectId = "3",
+                    Username = "admin",
                     Password = "password"
                 }
             };
