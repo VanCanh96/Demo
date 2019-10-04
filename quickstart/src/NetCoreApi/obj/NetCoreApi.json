@@ -1,14 +1,32 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "My API",
-    "version": "v1"
+    "title": "Demo API",
+    "description": "A sample application with Swagger, Swashbuckle, and API versioning.",
+    "version": "1.0"
   },
   "paths": {
-    "/api/Account": {
+    "/api/v{version}/Account": {
       "get": {
         "tags": [
           "Account"
+        ],
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -46,6 +64,23 @@
         "tags": [
           "Account"
         ],
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -59,6 +94,11 @@
               }
             },
             "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/json-patch+json": {
               "schema": {
                 "$ref": "#/components/schemas/User"
               }
@@ -89,7 +129,7 @@
         }
       }
     },
-    "/api/Account/{id}": {
+    "/api/v{version}/Account/{id}": {
       "get": {
         "tags": [
           "Account"
@@ -102,6 +142,21 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -141,6 +196,21 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -156,6 +226,11 @@
               }
             },
             "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/json-patch+json": {
               "schema": {
                 "$ref": "#/components/schemas/User"
               }
@@ -180,6 +255,21 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -207,10 +297,27 @@
         }
       }
     },
-    "/api/TodoItems": {
+    "/api/v{version}/TodoItems": {
       "get": {
         "tags": [
           "TodoItems"
+        ],
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -248,6 +355,23 @@
         "tags": [
           "TodoItems"
         ],
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -261,6 +385,11 @@
               }
             },
             "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoItem"
+              }
+            },
+            "application/json-patch+json": {
               "schema": {
                 "$ref": "#/components/schemas/TodoItem"
               }
@@ -291,7 +420,7 @@
         }
       }
     },
-    "/api/TodoItems/{id}": {
+    "/api/v{version}/TodoItems/{id}": {
       "get": {
         "tags": [
           "TodoItems"
@@ -304,6 +433,21 @@
             "schema": {
               "type": "integer",
               "format": "int64"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -343,6 +487,21 @@
               "type": "integer",
               "format": "int64"
             }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -358,6 +517,11 @@
               }
             },
             "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoItem"
+              }
+            },
+            "application/json-patch+json": {
               "schema": {
                 "$ref": "#/components/schemas/TodoItem"
               }
@@ -382,6 +546,21 @@
             "schema": {
               "type": "integer",
               "format": "int64"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -413,6 +592,15 @@
       "get": {
         "tags": [
           "WeatherForecast"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {

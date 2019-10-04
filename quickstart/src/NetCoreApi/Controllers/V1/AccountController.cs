@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetCoreApi.Models;
 
-namespace NetCoreApi.Controllers
+namespace NetCoreApi.V1.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    //[Route("api/[Controller]")
     public class AccountController : ControllerBase
     {
         private readonly TodoContext _context;
@@ -21,7 +23,7 @@ namespace NetCoreApi.Controllers
         }
 
         // GET: api/Account
-        [HttpGet]
+        [HttpGet, MapToApiVersion("1.0")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
