@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\NetCoreApi\\NetCoreApi\\NetCoreApi.csproj": {}
+    "D:\\Demo\\quickstart\\src\\NetCoreApi\\NetCoreApi.csproj": {}
   },
   "projects": {
-    "D:\\Project\\NetCoreApi\\NetCoreApi\\NetCoreApi.csproj": {
+    "D:\\Demo\\quickstart\\src\\NetCoreApi\\NetCoreApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\NetCoreApi\\NetCoreApi\\NetCoreApi.csproj",
+        "projectUniqueName": "D:\\Demo\\quickstart\\src\\NetCoreApi\\NetCoreApi.csproj",
         "projectName": "NetCoreApi",
-        "projectPath": "D:\\Project\\NetCoreApi\\NetCoreApi\\NetCoreApi.csproj",
+        "projectPath": "D:\\Demo\\quickstart\\src\\NetCoreApi\\NetCoreApi.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\NetCoreApi\\NetCoreApi\\obj\\",
+        "outputPath": "D:\\Demo\\quickstart\\src\\NetCoreApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -41,6 +41,30 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "IdentityServer4.AccessTokenValidation": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.ApiExplorer": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Versioning": {
+              "target": "Package",
+              "version": "[4.0.0-preview8.19405.7, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer": {
+              "target": "Package",
+              "version": "[4.0.0-preview8.19405.7, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.0.0, )"

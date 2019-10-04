@@ -7,9 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetCoreApi.Models;
 
-namespace NetCoreApi.Controllers
+namespace NetCoreApi.V1.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class TodoItemsController : ControllerBase
     {
@@ -21,7 +22,7 @@ namespace NetCoreApi.Controllers
         }
 
         // GET: api/TodoItems
-        [HttpGet]
+        [HttpGet, MapToApiVersion("1.0")]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {
             return await _context.TodoItems.ToListAsync();
