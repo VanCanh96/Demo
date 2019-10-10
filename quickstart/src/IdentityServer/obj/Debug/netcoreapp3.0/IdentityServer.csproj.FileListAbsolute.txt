@@ -112,7 +112,6 @@ D:\Demo\Demo\quickstart\src\IdentityServer\bin\Debug\netcoreapp3.0\System.Identi
 D:\Demo\Demo\quickstart\src\IdentityServer\obj\Debug\netcoreapp3.0\IdentityServer.csprojAssemblyReference.cache
 D:\Demo\Demo\quickstart\src\IdentityServer\obj\Debug\netcoreapp3.0\staticwebassets\IdentityServer.StaticWebAssets.Manifest.cache
 D:\Demo\Demo\quickstart\src\IdentityServer\obj\Debug\netcoreapp3.0\staticwebassets\IdentityServer.StaticWebAssets.xml
-D:\Demo\Demo\quickstart\src\IdentityServer\obj\Debug\netcoreapp3.0\IdentityServer.MvcApplicationPartsAssemblyInfo.cache
 D:\Demo\Demo\quickstart\src\IdentityServer\obj\Debug\netcoreapp3.0\IdentityServer.RazorAssemblyInfo.cache
 D:\Demo\Demo\quickstart\src\IdentityServer\obj\Debug\netcoreapp3.0\IdentityServer.RazorAssemblyInfo.cs
 D:\Demo\Demo\quickstart\src\IdentityServer\obj\Debug\netcoreapp3.0\IdentityServer.AssemblyInfoInputs.cache
@@ -144,3 +143,13 @@ D:\Demo\Demo\quickstart\src\IdentityServer\obj\Debug\netcoreapp3.0\IdentityServe
 D:\Demo\Demo\quickstart\src\IdentityServer\obj\Debug\netcoreapp3.0\IdentityServer.csproj.CopyComplete
 D:\Demo\Demo\quickstart\src\IdentityServer\obj\Debug\netcoreapp3.0\IdentityServer.dll
 D:\Demo\Demo\quickstart\src\IdentityServer\obj\Debug\netcoreapp3.0\IdentityServer.pdb
+D:\Demo\Demo\quickstart\src\IdentityServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.dll
+D:\Demo\Demo\quickstart\src\IdentityServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Demo\Demo\quickstart\src\IdentityServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Demo\Demo\quickstart\src\IdentityServer\bin\Debug\netcoreapp3.0\Npgsql.dll
+D:\Demo\Demo\quickstart\src\IdentityServer\bin\Debug\netcoreapp3.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Demo\Demo\quickstart\src\IdentityServer\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Demo\Demo\quickstart\src\IdentityServer\bin\Debug\netcoreapp3.0\AutoMapper.dll
+D:\Demo\Demo\quickstart\src\IdentityServer\bin\Debug\netcoreapp3.0\IdentityServer4.EntityFramework.Storage.dll
+D:\Demo\Demo\quickstart\src\IdentityServer\bin\Debug\netcoreapp3.0\IdentityServer4.EntityFramework.dll
+D:\Demo\Demo\quickstart\src\IdentityServer\obj\Debug\netcoreapp3.0\IdentityServer.MvcApplicationPartsAssemblyInfo.cache

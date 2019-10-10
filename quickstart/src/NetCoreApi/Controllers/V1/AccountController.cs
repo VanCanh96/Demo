@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using NetCoreApi.Models;
+using Npgsql;
 
 namespace NetCoreApi.V1.Controllers
 {
@@ -15,18 +19,28 @@ namespace NetCoreApi.V1.Controllers
     //[Route("api/[Controller]")
     public class AccountController : ControllerBase
     {
+        public IConfiguration Configuration { get; }
         private readonly TodoContext _context;
 
-        public AccountController(TodoContext context)
+        public AccountController(TodoContext context, IConfiguration configuration)
         {
             _context = context;
+            Configuration = configuration;
         }
 
         // GET: api/Account
         [HttpGet, MapToApiVersion("1.0")]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public ActionResult<object> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            object eventName;
+            using (NpgsqlConnection connection = new NpgsqlConnection("UserName=postgres;Password=123456;Host=localhost;Port=5432;Database=postgres;"))
+            {
+                connection.Open();
+                eventName = connection.QueryFirst("select * from \"Account\"");
+                connection.Close();
+            }
+
+            return eventName.ToString();
         }
 
         // GET: api/Account/5
