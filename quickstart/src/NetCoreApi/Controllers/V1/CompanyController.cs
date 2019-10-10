@@ -12,14 +12,13 @@ using Npgsql;
 using MediatR;
 using NetCoreApi.Command;
 using Microsoft.AspNetCore.Authorization;
-using NetCoreApi.Authentication;
+
 
 namespace NetCoreApi.Controllers.V1
 {
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    [AuthorizeUser]
     public class CompanyController : ControllerBase
     {
         private readonly IRepository<Company> _repository;

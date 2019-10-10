@@ -1,5 +1,4 @@
 using FluentMigrator.Runner;
-using FluentMigrator.Runner.Initialization;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -16,15 +15,12 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
-using NetCoreApi.Authentication;
 using NetCoreApi.FluentMigrations;
 using NetCoreApi.Models;
 using NetCoreApi.Repository;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Reflection;
 
 namespace NetCoreApi
@@ -91,6 +87,10 @@ namespace NetCoreApi
                     options.SubstituteApiVersionInUrl = true;
                 });
 
+            //var build = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsetting.json");
+            //var config = build.Build();
+
+            //Add repository
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
@@ -119,18 +119,14 @@ namespace NetCoreApi
                 });
             });
 
-            var jwtSection = Configuration.GetSection("Jwt");
-            var jwtOptions = new JwtOptionsModel();
-            jwtSection.Bind(jwtOptions);
-            services.Configure<JwtOptionsModel>(jwtSection);
+            //var jwtSection = Configuration.GetSection("Jwt");
+            //var jwtOptions = new JwtOptionsModel();
+            //jwtSection.Bind(jwtOptions);
+            //services.Configure<JwtOptionsModel>(jwtSection);
 
-            services.AddTransient<AuthorizeUser>();
+           
 
-            // Register the Swagger generator, defining 1 or more Swagger documents
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-            //});
+            services.AddSwaggerGen();
 
             //DbContext setup
             services.AddDbContext<TodoContext>(options =>
@@ -154,12 +150,13 @@ namespace NetCoreApi
             // Inject
             services.AddTransient<IRepository<Employee>, EmployeeRepository>();
             services.AddTransient<IRepository<Company>, CompanyRepository>();
+            services.AddTransient<IRepository<Personal>, PersonalRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IApiVersionDescriptionProvider provider, IMigrationRunner runner)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory,
+            IApiVersionDescriptionProvider provider, IMigrationRunner migrationRunner)
         {
-            runner.MigrateUp();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -186,8 +183,8 @@ namespace NetCoreApi
             }
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
-
             app.UseSwagger();
+
             app.UseSwaggerUI(
             options =>
             {
@@ -200,6 +197,9 @@ namespace NetCoreApi
             });
 
             app.UseCors("AllowAllOrigins");
+
+            //migration
+            InitializeDatabase(app, migrationRunner);
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
@@ -221,6 +221,15 @@ namespace NetCoreApi
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void InitializeDatabase(IApplicationBuilder app, IMigrationRunner migrationRunner)
+        {
+            using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                scope.ServiceProvider.GetRequiredService<TodoContext>().Database.Migrate();
+            }
+            migrationRunner.MigrateUp();
         }
     }
 }

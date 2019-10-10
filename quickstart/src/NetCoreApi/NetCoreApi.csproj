@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Repositoties\**" />
+    <Content Remove="Repositoties\**" />
+    <EmbeddedResource Remove="Repositoties\**" />
+    <None Remove="Repositoties\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.30" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.30" />
     <PackageReference Include="Dapper.SimpleCRUD" Version="2.2.0" />
