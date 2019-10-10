@@ -13,13 +13,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using NetCoreApi.FluentMigrator;
+using Microsoft.IdentityModel.Logging;
+using Microsoft.OpenApi.Models;
+using NetCoreApi.FluentMigrations;
 using NetCoreApi.Models;
-using NetCoreApi.Repositoties;
-using NetCoreApi.Repositoties.Implement;
-using NetCoreApi.Repositoties.Interface;
+using NetCoreApi.Repository;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System.IO;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 
 namespace NetCoreApi
@@ -86,29 +87,70 @@ namespace NetCoreApi
                     options.SubstituteApiVersionInUrl = true;
                 });
 
-           
             //var build = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsetting.json");
             //var config = build.Build();
 
             //Add repository
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
-            services.AddTransient<IRepositoryBase<Personal>, PersonalRepository>();
-            
-            
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
+            IdentityModelEventSource.ShowPII = true;
+            services.AddSwaggerGen(options =>
+            {
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using token",
+                    Name = "accessToken",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement() {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Id = "Bearer", //The name of the previously defined security scheme.
+                                Type = ReferenceType.SecurityScheme
+                            }
+                        }, new List<string>()
+                    }
+                });
+            });
+
+            //var jwtSection = Configuration.GetSection("Jwt");
+            //var jwtOptions = new JwtOptionsModel();
+            //jwtSection.Bind(jwtOptions);
+            //services.Configure<JwtOptionsModel>(jwtSection);
+
+           
+
             services.AddSwaggerGen();
 
             //DbContext setup
             services.AddDbContext<TodoContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-            //Fluent Migrator
+            // Add common FluentMigrator services
             services.AddFluentMigratorCore()
-                .ConfigureRunner(
-                    builder => builder
-                        .AddPostgres()
-                        .WithGlobalConnectionString(Configuration.GetConnectionString("DefaultConnection"))
-                        .ScanIn(typeof(AddPersonal).Assembly).For.Migrations());
+                .ConfigureRunner(rb => rb
+                    // Add PostgreSql support to FluentMigrator
+                    .AddPostgres()
+                    // Set the connection string
+                    .WithGlobalConnectionString(Configuration.GetConnectionString("DefaultConnection"))
+                    // Define the assembly containing the migrations
+                    .ScanIn(typeof(AddTableCustomer).Assembly).For.Migrations()
+                    .ScanIn(typeof(AddTableEmployee).Assembly).For.Migrations()
+                    .ScanIn(typeof(AddTableCompany).Assembly).For.Migrations()
+                    .ScanIn(typeof(AlterTableCustomer).Assembly).For.Migrations())
+                // Enable logging to console in the FluentMigrator way
+                .AddLogging(lb => lb.AddFluentMigratorConsole());
+
+            // Inject
+            services.AddTransient<IRepository<Employee>, EmployeeRepository>();
+            services.AddTransient<IRepository<Company>, CompanyRepository>();
+            services.AddTransient<IRepository<Personal>, PersonalRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

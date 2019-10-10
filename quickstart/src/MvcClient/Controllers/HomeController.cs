@@ -47,19 +47,7 @@ namespace MvcClient.Controllers
                 return View("AccessDenied");
             }
 
-            // call api
-            var apiClient = new HttpClient();
-            apiClient.SetBearerToken(tokenResponse.AccessToken);
-
-            var response = await apiClient.GetAsync("https://localhost:44319/api/Account");
-            if (!response.IsSuccessStatusCode)
-            {
-                ViewBag.Message = response.StatusCode;
-            }
-            else
-            {
-                ViewBag.Message = await response.Content.ReadAsStringAsync();
-            }
+            ViewBag.Token = tokenResponse.AccessToken;
 
             return View();
         }

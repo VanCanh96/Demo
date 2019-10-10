@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NetCoreApi.FluentMigrator
 {
-    [Migration(5)]
+    [Migration(9)]
     public class AddPersonal : Migration
     {
         public override void Up()

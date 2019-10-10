@@ -7,9 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="1.60.6" />
+    <Compile Remove="Repositoties\**" />
+    <Content Remove="Repositoties\**" />
+    <EmbeddedResource Remove="Repositoties\**" />
+    <None Remove="Repositoties\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.30" />
+    <PackageReference Include="Dapper.Contrib" Version="2.0.30" />
+    <PackageReference Include="Dapper.SimpleCRUD" Version="2.2.0" />
+    <PackageReference Include="Dapper.SimpleCRUD.ModelGenerator" Version="1.0.3" />
+    <PackageReference Include="Dapper.SimpleLoad" Version="2.0.140" />
+    <PackageReference Include="Dapper.SimpleSave" Version="1.0.187" />
     <PackageReference Include="FluentMigrator" Version="3.2.1" />
     <PackageReference Include="FluentMigrator.Runner" Version="3.2.1" />
+    <PackageReference Include="FluentMigrator.Runner.Core" Version="3.2.1" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />

@@ -1,9 +1,32 @@
 ﻿@model List<MvcClient.Models.LoginInputModel>
 
-    <ul>
-        @foreach (var item in Model)
-        {
-            <li>@item.Username</li>
-            <li>@item.Password</li>
-        }
-    </ul>
+@ViewBag.Message
+@*<ul>
+    @foreach (var item in Model)
+    {
+        <li>@item.Username</li>
+        <li>@item.Password</li>
+    }
+</ul>*@
+
+<input type="text" id="data" />
+<input type="button" onclick="onBtnClick()" value="Click" />
+<div id="demo"></div>
+<script>
+    function onBtnClick() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML = this.responseText;
+            }
+            else if (this.status == 401) {
+                document.getElementById("demo").innerHTML = "Not Authorize";
+            }
+        };
+
+        var data = document.getElementById("data");
+        xhttp.open("GET", data.value, true);
+        xhttp.setRequestHeader("Authorization", "Basic cm8uY2xpZW50OnNlY3JldA==");
+        xhttp.send();
+    }
+</script>

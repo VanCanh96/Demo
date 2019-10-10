@@ -283,4 +283,8 @@ D:\Demo\quickstart\src\NetCoreApi\obj\Debug\netcoreapp3.0\NetCoreApi.RazorTarget
 D:\Demo\quickstart\src\NetCoreApi\obj\Debug\netcoreapp3.0\NetCoreApi.csproj.CopyComplete
 D:\Demo\quickstart\src\NetCoreApi\obj\Debug\netcoreapp3.0\NetCoreApi.dll
 D:\Demo\quickstart\src\NetCoreApi\obj\Debug\netcoreapp3.0\NetCoreApi.pdb
-D:\Demo\quickstart\src\NetCoreApi\obj\Debug\netcoreapp3.0\NetCoreApi.csprojAssemblyReference.cache
+D:\Demo\quickstart\src\NetCoreApi\bin\Debug\netcoreapp3.0\Dapper.Contrib.dll
+D:\Demo\quickstart\src\NetCoreApi\bin\Debug\netcoreapp3.0\Dapper.SimpleCRUD.dll
+D:\Demo\quickstart\src\NetCoreApi\bin\Debug\netcoreapp3.0\Dapper.SimpleLoad.dll
+D:\Demo\quickstart\src\NetCoreApi\bin\Debug\netcoreapp3.0\Dapper.SimpleSave.dll
+D:\Demo\quickstart\src\NetCoreApi\bin\Debug\netcoreapp3.0\log4net.dll

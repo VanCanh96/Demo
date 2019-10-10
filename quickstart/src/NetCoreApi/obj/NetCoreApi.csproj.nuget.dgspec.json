@@ -43,13 +43,37 @@
           "dependencies": {
             "Dapper": {
               "target": "Package",
-              "version": "[1.60.6, )"
+              "version": "[2.0.30, )"
+            },
+            "Dapper.Contrib": {
+              "target": "Package",
+              "version": "[2.0.30, )"
+            },
+            "Dapper.SimpleCRUD": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Dapper.SimpleCRUD.ModelGenerator": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
+            "Dapper.SimpleLoad": {
+              "target": "Package",
+              "version": "[2.0.140, )"
+            },
+            "Dapper.SimpleSave": {
+              "target": "Package",
+              "version": "[1.0.187, )"
             },
             "FluentMigrator": {
               "target": "Package",
               "version": "[3.2.1, )"
             },
             "FluentMigrator.Runner": {
+              "target": "Package",
+              "version": "[3.2.1, )"
+            },
+            "FluentMigrator.Runner.Core": {
               "target": "Package",
               "version": "[3.2.1, )"
             },

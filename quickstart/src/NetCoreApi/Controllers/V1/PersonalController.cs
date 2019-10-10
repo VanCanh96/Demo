@@ -1,10 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using NetCoreApi.Command;
 using NetCoreApi.Models;
-using NetCoreApi.Repositoties;
-using NetCoreApi.Repositoties.Interface;
+using NetCoreApi.Repository;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,12 +14,12 @@ namespace NetCoreApi.Controllers.V1
 
     public class PersonalController : ControllerBase
     {
-        IRepositoryBase<Personal> _repositoryBase;
+        IRepository<Personal> _personRepo;
         IMediator _mediator;
 
-        public PersonalController(IRepositoryBase<Personal> repositoryBase, IMediator mediator)
+        public PersonalController(IRepository<Personal> personRepo, IMediator mediator)
         {
-            _repositoryBase = repositoryBase;
+            _personRepo = personRepo;
             _mediator = mediator;
         }
 
@@ -29,16 +27,10 @@ namespace NetCoreApi.Controllers.V1
         [HttpGet]
         public async  Task<IEnumerable<Personal>> GetAll()
         {
-            var data = await _repositoryBase.GetAll();
+            var data = await _personRepo.GetAllAsync();
             return data;
         }
 
-        // GET: api/Personal/5
-        [HttpGet("{id}", Name = "Get")]
-        public void Get(int? id)
-        {
-            _repositoryBase.GetById(id.Value);
-        }
 
         // POST: api/Personal
         [HttpPost]
@@ -48,18 +40,6 @@ namespace NetCoreApi.Controllers.V1
             return this.Ok(new OkObjectResult(media));
         }
 
-        // PUT: api/Personal/5
-        [HttpPut("{id}")]
-        public void Put(int? id)
-        {
-            _repositoryBase.GetById(id.Value);
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int? id)
-        {
-            _repositoryBase.Delete(id.Value);
-        }
+        
     }
 }

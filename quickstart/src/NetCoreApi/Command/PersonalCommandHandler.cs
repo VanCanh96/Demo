@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Configuration;
 using NetCoreApi.Models;
-using NetCoreApi.Repositoties.Interface;
+using NetCoreApi.Repository;
 using Npgsql;
 using System.Data;
 using System.Threading;
@@ -13,9 +13,9 @@ namespace NetCoreApi.Command
     public class PersonalCommandHandler : IRequestHandler<PersonalCommand, int>
     {
         private string _connectionString;
-        private IRepositoryBase<Personal> _personalRepo;
+        private IRepository<Personal> _personalRepo;
 
-        public PersonalCommandHandler(IConfiguration configuration, IRepositoryBase<Personal> personalRepo)
+        public PersonalCommandHandler(IConfiguration configuration, IRepository<Personal> personalRepo)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
             _personalRepo = personalRepo;
@@ -27,7 +27,7 @@ namespace NetCoreApi.Command
             {
                 using (IDbConnection connection = new NpgsqlConnection(_connectionString))
                 {
-                    var result = await _personalRepo.Add(connection, new Personal
+                    var result = await _personalRepo.CreateAsync(connection, new Personal
                     {
                         FullName = request.FullName,
                         Address = request.Address,
