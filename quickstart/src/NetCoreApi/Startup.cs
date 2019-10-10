@@ -1,3 +1,4 @@
+using FluentMigrator.Runner;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -12,8 +13,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using NetCoreApi.FluentMigrator;
 using NetCoreApi.Models;
+using NetCoreApi.Repositoties;
+using NetCoreApi.Repositoties.Implement;
+using NetCoreApi.Repositoties.Interface;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.IO;
 using System.Reflection;
 
 namespace NetCoreApi
@@ -80,22 +86,34 @@ namespace NetCoreApi
                     options.SubstituteApiVersionInUrl = true;
                 });
 
-            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-            services.AddSwaggerGen();
+           
+            //var build = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsetting.json");
+            //var config = build.Build();
 
-            // Register the Swagger generator, defining 1 or more Swagger documents
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-            //});
+            //Add repository
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+
+            services.AddTransient<IRepositoryBase<Personal>, PersonalRepository>();
+            
+            
+            services.AddSwaggerGen();
 
             //DbContext setup
             services.AddDbContext<TodoContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
+            //Fluent Migrator
+            services.AddFluentMigratorCore()
+                .ConfigureRunner(
+                    builder => builder
+                        .AddPostgres()
+                        .WithGlobalConnectionString(Configuration.GetConnectionString("DefaultConnection"))
+                        .ScanIn(typeof(AddPersonal).Assembly).For.Migrations());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IApiVersionDescriptionProvider provider)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory,
+            IApiVersionDescriptionProvider provider, IMigrationRunner migrationRunner)
         {
             if (env.IsDevelopment())
             {
@@ -123,8 +141,8 @@ namespace NetCoreApi
             }
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
-
             app.UseSwagger();
+
             app.UseSwaggerUI(
             options =>
             {
@@ -137,6 +155,9 @@ namespace NetCoreApi
             });
 
             app.UseCors("AllowAllOrigins");
+
+            //migration
+            InitializeDatabase(app, migrationRunner);
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
@@ -158,6 +179,15 @@ namespace NetCoreApi
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void InitializeDatabase(IApplicationBuilder app, IMigrationRunner migrationRunner)
+        {
+            using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                scope.ServiceProvider.GetRequiredService<TodoContext>().Database.Migrate();
+            }
+            migrationRunner.MigrateUp();
         }
     }
 }

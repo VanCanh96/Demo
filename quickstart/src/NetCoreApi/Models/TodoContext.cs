@@ -10,5 +10,8 @@ namespace NetCoreApi.Models
 
         public DbSet<TodoItem> TodoItems { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Log> Logs { get; set; }
+
+        public DbSet<Personal> Personals { get; set; }
     }
 }
